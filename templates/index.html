@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCart AI — Enterprise E-Commerce Intelligence Suite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- ANIMATED AURORA BACKGROUND -->
+    <div class="aurora-bg">
+        <div class="aurora-orb orb-1"></div>
+        <div class="aurora-orb orb-2"></div>
+        <div class="aurora-orb orb-3"></div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- WELCOME POPUP MODAL                                                   -->
+    <!-- ===================================================================== -->
+    <div id="welcomeModal" class="modal-backdrop active">
+        <div class="welcome-modal">
+            <button id="closeWelcomeX" class="modal-close-btn" title="Close Welcome Guide">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="welcome-badge">
+                <span class="pulse-dot"></span> LIVE ML ENGINE INITIALIZED • 36+ CATALOG SKUs
+            </div>
+            <div class="welcome-hero">
+                <div class="welcome-icon-ring">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h1>Welcome to <span>SmartCart AI</span></h1>
+                <p>Next-Generation E-Commerce Intelligence Platform powered by Scikit-Learn Gradient Boosting, TF-IDF Semantic Vectorization, Log-Linear Elasticity & Live Admin Catalog Studio.</p>
+            </div>
+
+            <div class="welcome-telemetry-bar">
+                <div class="wt-item">
+                    <strong id="wtProducts">{{ stats.total_products }}</strong>
+                    <span>Active SKUs</span>
+                </div>
+                <div class="wt-item">
+                    <strong>{{ metrics.accuracy }}%</strong>
+                    <span>GB Accuracy</span>
+                </div>
+                <div class="wt-item">
+                    <strong>{{ metrics.roc_auc }}</strong>
+                    <span>ROC-AUC</span>
+                </div>
+                <div class="wt-item">
+                    <strong>5</strong>
+                    <span>AI & Admin Modules</span>
+                </div>
+            </div>
+
+            <div class="welcome-grid">
+                <div class="wg-card" data-jump="mod-recommend">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h4>1. Hybrid Recommender</h4>
+                    <p>TF-IDF Cosine + Quality & Price Affinity</p>
+                </div>
+                <div class="wg-card" data-jump="mod-behavior">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h4>2. Behavior Predictor</h4>
+                    <p>Gradient Boosting Conversion & Churn</p>
+                </div>
+                <div class="wg-card" data-jump="mod-pricing">
+                    <i class="fa-solid fa-tags"></i>
+                    <h4>3. Dynamic Pricing</h4>
+                    <p>Elasticity & Scarcity Margin Engine</p>
+                </div>
+                <div class="wg-card" data-jump="mod-chatbot">
+                    <i class="fa-solid fa-robot"></i>
+                    <h4>4. Omni-AI Copilot</h4>
+                    <p>Comparisons, Budgets, Policies & Search</p>
+                </div>
+                <div class="wg-card admin-highlight" data-jump="mod-admin">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h4>5. Admin Product Studio</h4>
+                    <p>Add Custom SKUs & Live Retrain AI</p>
+                </div>
+            </div>
+
+            <div class="welcome-footer">
+                <button id="launchDashboardBtn" class="btn-glow-primary">
+                    <i class="fa-solid fa-rocket"></i> Launch Interactive Workspace
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TOP NAVIGATION & MENU BAR                                             -->
+    <!-- ===================================================================== -->
+    <header class="top-header">
+        <div class="container header-inner">
+            <div class="brand-box">
+                <div class="brand-logo"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div>
+                    <h1>SmartCart <span>AI</span></h1>
+                    <p>BMSIT&M • AI in E-Commerce Enterprise Prototype (1BAI103)</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <span class="status-pill"><span class="pulse-dot"></span> Models Persisted (.joblib)</span>
+                <button id="openWelcomeBtn" class="btn-outline-sm">
+                    <i class="fa-solid fa-sparkles"></i> Welcome Guide
+                </button>
+            </div>
+        </div>
+
+        <nav class="container module-nav">
+            <button class="nav-btn active" data-target="mod-recommend">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 1. Product Recommendation
+            </button>
+            <button class="nav-btn" data-target="mod-behavior">
+                <i class="fa-solid fa-user-check"></i> 2. Customer Behavior
+            </button>
+            <button class="nav-btn" data-target="mod-pricing">
+                <i class="fa-solid fa-indian-rupee-sign"></i> 3. Dynamic Pricing
+            </button>
+            <button class="nav-btn" data-target="mod-chatbot">
+                <i class="fa-solid fa-comments"></i> 4. AI Shopping Chatbot
+            </button>
+            <button class="nav-btn nav-admin" data-target="mod-admin">
+                <i class="fa-solid fa-plus-circle"></i> 5. Admin Product Studio
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- MAIN WORKSPACE CONTAINER                                              -->
+    <!-- ===================================================================== -->
+    <main class="container workspace">
+
+        <!-- ================================================================= -->
+        <!-- MODULE 1: HYBRID PRODUCT RECOMMENDATION ENGINE                    -->
+        <!-- ================================================================= -->
+        <section id="mod-recommend" class="module-view active">
+            <div class="module-banner">
+                <div>
+                    <span class="mod-tag">PILLAR 01 • CONTENT & AFFINITY FILTERING</span>
+                    <h2>Hybrid Product Recommendation Engine</h2>
+                </div>
+                <div class="algo-chip">Bi-Gram TF-IDF + Cosine Similarity + Gaussian Price Affinity</div>
+            </div>
+
+            <!-- 1ST HALF: LIVE INTERACTION & DUAL CHARTS -->
+            <div class="grid-2-col">
+                <div class="glass-card stagger-1">
+                    <h3><i class="fa-solid fa-sliders"></i> Live Shopper Context Simulator</h3>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="recCategoryFilter">Filter Recommendations by Category:</label>
+                            <select id="recCategoryFilter">
+                                <option value="ALL">All Categories (Cross-Sell Enabled)</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Laptops">Laptops</option>
+                                <option value="Smartphones">Smartphones</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Wearables">Wearables</option>
+                                <option value="Smart Home">Smart Home</option>
+                                <option value="Gaming & Cameras">Gaming & Cameras</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recTopN">Top-N Ranked Results:</label>
+                            <select id="recTopN">
+                                <option value="4">Top 4 Matches</option>
+                                <option value="6" selected>Top 6 Matches</option>
+                                <option value="8">Top 8 Matches</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productSelect">Currently Viewed Product (Anchor SKU):</label>
+                        <select id="productSelect">
+                            {% for p in products %}
+                            <option value="{{ p.Product_ID }}" data-price="{{ p.Base_Price }}">
+                                #{{ p.Product_ID }} — {{ p.Product_Name }} — ₹{{ "{:,}".format(p.Base_Price) }} ({{ p.Category }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-top">
+                            <label for="diversitySlider">Discovery & Quality Diversity Weight:</label>
+                            <span id="diversityVal" class="val-badge">20% (Balanced)</span>
+                        </div>
+                        <input type="range" id="diversitySlider" min="0" max="0.6" step="0.05" value="0.20">
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Recommended Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Rating</th>
+                                    <th>Hybrid Match</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="charts-stack stagger-2">
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-chart-bar"></i> Hybrid Score vs. Pure Semantic Match (%)</h3>
+                        <div class="chart-box"><canvas id="simChart"></canvas></div>
+                    </div>
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-compass"></i> Top Pick Multi-Factor Affinity Radar</h3>
+                        <div class="chart-box-sm"><canvas id="recRadarChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2ND HALF: STRUCTURED KNOWLEDGE CARDS -->
+            <div class="knowledge-grid stagger-3">
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-gears"></i> How Is It Used</h4>
+                    <p>Vectorizes product titles, brands, categories, and tags into high-dimensional TF-IDF matrices and computes angular cosine similarity blended with customer review quality and price-tier proximity.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-hand-pointer"></i> How To Use</h4>
+                    <p>Pick any anchor product from the 36-SKU catalog, optionally filter by target category, and slide the Diversity Weight to balance strict feature similarity against cross-sell discovery.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Pro Tips</h4>
+                    <p>Set Diversity Weight to <strong>0.35–0.50</strong> on checkout pages to surface high-rated companion accessories (e.g., docks, mice, or chargers) alongside flagship laptops or phones.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-trophy"></i> Advantages</h4>
+                    <p>Eliminates cold-start failures for newly added Admin SKUs because recommendations rely on rich metadata vectors rather than waiting months for historical click logs.</p>
+                </div>
+                <div class="k-card ps-card">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Solution for the Problem Statement (PS)</h4>
+                    <p>Solves catalog overload and low average order value (AOV) by replacing static bestseller lists with real-time, personalized multi-attribute product matching.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- MODULE 2: CUSTOMER BEHAVIOR & CONVERSION PREDICTION               -->
+        <!-- ================================================================= -->
+        <section id="mod-behavior" class="module-view">
+            <div class="module-banner">
+                <div>
+                    <span class="mod-tag">PILLAR 02 • SUPERVISED ENSEMBLE CLASSIFICATION</span>
+                    <h2>Customer Behavior & Conversion Predictor</h2>
+                </div>
+                <div class="algo-chip">GradientBoostingClassifier • Acc: {{ metrics.accuracy }}% • ROC-AUC: {{ metrics.roc_auc }}</div>
+            </div>
+
+            <!-- LIVE MODEL BENCHMARK STRIP -->
+            <div class="kpi-strip stagger-1">
+                <div class="kpi-tile"><span>Test Accuracy</span><strong>{{ metrics.accuracy }}%</strong></div>
+                <div class="kpi-tile"><span>Precision</span><strong>{{ metrics.precision }}%</strong></div>
+                <div class="kpi-tile"><span>Recall</span><strong>{{ metrics.recall }}%</strong></div>
+                <div class="kpi-tile"><span>F1-Score</span><strong>{{ metrics.f1_score }}%</strong></div>
+                <div class="kpi-tile"><span>ROC-AUC</span><strong>{{ metrics.roc_auc }}</strong></div>
+            </div>
+
+            <!-- 1ST HALF: LIVE INTERACTION & DUAL CHARTS -->
+            <div class="grid-2-col">
+                <div class="glass-card stagger-2">
+                    <h3><i class="fa-solid fa-sliders"></i> Live Clickstream Session Telemetry</h3>
+
+                    <div class="slider-group">
+                        <div class="slider-top"><label>Time Spent on Site:</label><span id="timeVal" class="val-badge">9.5 min</span></div>
+                        <input type="range" id="timeInput" min="0.5" max="25" step="0.5" value="9.5">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-top"><label>Product Pages Viewed:</label><span id="pagesVal" class="val-badge">7 pages</span></div>
+                        <input type="range" id="pagesInput" min="1" max="24" step="1" value="7">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-top"><label>Past Completed Orders:</label><span id="pastVal" class="val-badge">2 orders</span></div>
+                        <input type="range" id="pastInput" min="0" max="11" step="1" value="2">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-top"><label>Cart Additions / Wishlist Saves:</label><span id="additionsVal" class="val-badge">2 items</span></div>
+                        <input type="range" id="additionsInput" min="1" max="7" step="1" value="2">
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="discountInput">Active Coupon Discount:</label>
+                            <select id="discountInput">
+                                <option value="0">0% (No Coupon)</option>
+                                <option value="5">5% Off</option>
+                                <option value="10" selected>10% Off</option>
+                                <option value="15">15% Off</option>
+                                <option value="20">20% Off</option>
+                                <option value="25">25% Flash Offer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cartInput">Cart Value (₹):</label>
+                            <input type="number" id="cartInput" value="29990" min="500" step="500">
+                        </div>
+                    </div>
+
+                    <div class="gauge-result-panel">
+                        <div class="svg-gauge-wrap">
+                            <svg viewBox="0 0 120 120" class="radial-svg">
+                                <circle cx="60" cy="60" r="52" class="gauge-track"></circle>
+                                <circle cx="60" cy="60" r="52" id="gaugeCircle" class="gauge-fill"></circle>
+                            </svg>
+                            <div class="gauge-center">
+                                <strong id="probDisplay">--%</strong>
+                                <span>Convert</span>
+                            </div>
+                        </div>
+                        <div class="gauge-details">
+                            <span id="intentStatus" class="intent-pill">Calculating...</span>
+                            <p class="abandon-line">Cart Abandonment Risk: <strong id="abandonDisplay">--%</strong></p>
+                            <p id="aiStrategyText" class="strategy-box"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-stack stagger-3">
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-ranking-star"></i> Gradient Boosting Feature Importance (%)</h3>
+                        <div class="chart-box"><canvas id="featureImpChart"></canvas></div>
+                    </div>
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Conversion vs. Abandonment Risk Split</h3>
+                        <div class="chart-box-sm"><canvas id="conversionDoughnutChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2ND HALF: STRUCTURED KNOWLEDGE CARDS -->
+            <div class="knowledge-grid stagger-3">
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-gears"></i> How Is It Used</h4>
+                    <p>Standardizes 6 real-time session features via <code>StandardScaler</code> and runs inference through a 150-tree <code>GradientBoostingClassifier</code> persisted in <code>models/behavior_gb_model.joblib</code>.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-hand-pointer"></i> How To Use</h4>
+                    <p>Adjust session duration, page depth, loyalty history, coupon discount, and cart value sliders to watch conversion probability and automated retention playbooks update instantaneously.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Pro Tips</h4>
+                    <p>Never offer coupons to users already above <strong>72% conversion intent</strong>—they will purchase organically, preserving full gross margin.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-trophy"></i> Advantages</h4>
+                    <p>Captures non-linear interactions (such as high cart value paired with exit-intent coupons) far more accurately than static rule-based popups.</p>
+                </div>
+                <div class="k-card ps-card">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Solution for the Problem Statement (PS)</h4>
+                    <p>Directly combats the ~70% industry cart abandonment rate by deploying targeted retention incentives exclusively to hesitant shoppers (42%–71.9% intent).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- MODULE 3: DYNAMIC PRICING & ELASTICITY OPTIMIZER                  -->
+        <!-- ================================================================= -->
+        <section id="mod-pricing" class="module-view">
+            <div class="module-banner">
+                <div>
+                    <span class="mod-tag">PILLAR 03 • REVENUE & ELASTICITY OPTIMIZATION</span>
+                    <h2>Dynamic Pricing & Elasticity Engine</h2>
+                </div>
+                <div class="algo-chip">Log-Linear Elasticity (e = -1.4) + Scarcity + Competitor Anchoring</div>
+            </div>
+
+            <!-- 1ST HALF: LIVE INTERACTION & DUAL CHARTS -->
+            <div class="grid-2-col">
+                <div class="glass-card stagger-1">
+                    <h3><i class="fa-solid fa-sliders"></i> Market Demand & Competitor Controls</h3>
+
+                    <div class="form-group">
+                        <label for="pricingProductSelect">Target SKU for Price Optimization:</label>
+                        <select id="pricingProductSelect">
+                            {% for p in products %}
+                            <option value="{{ p.Product_ID }}" data-price="{{ p.Base_Price }}">
+                                #{{ p.Product_ID }} — {{ p.Product_Name }} (Base: ₹{{ "{:,}".format(p.Base_Price) }} | Stock: {{ p.Stock }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-top"><label>Real-Time Demand Surge Index:</label><span id="demandVal" class="val-badge">1.25x (Surge)</span></div>
+                        <input type="range" id="demandInput" min="0.6" max="1.8" step="0.05" value="1.25">
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="compPriceInput">Competitor Price (₹):</label>
+                            <input type="number" id="compPriceInput" value="28990" min="500" step="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeSlotInput">Traffic Time Slot:</label>
+                            <select id="timeSlotInput">
+                                <option value="offpeak">Off-Peak Night (-3%)</option>
+                                <option value="normal">Standard Daytime (0%)</option>
+                                <option value="peak" selected>Evening Peak (+3%)</option>
+                                <option value="flash">Festive Flash Sale (+6%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="pricing-kpi-grid">
+                        <div class="pk-box highlight">
+                            <span>AI Optimal Price</span>
+                            <strong id="optimalPriceDisplay">₹--</strong>
+                            <small id="priceDeltaDisplay">--% vs Base</small>
+                        </div>
+                        <div class="pk-box">
+                            <span>Projected Daily Sales</span>
+                            <strong id="projUnitsDisplay">-- units</strong>
+                            <small id="stockStatusDisplay">--</small>
+                        </div>
+                        <div class="pk-box">
+                            <span>Daily Net Profit</span>
+                            <strong id="dailyProfitDisplay">₹--</strong>
+                            <small id="profitLiftDisplay" class="lift-pos">+--% Profit Lift</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-stack stagger-2">
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-chart-area"></i> Demand Surge vs. Optimal Price & Profit Curve</h3>
+                        <div class="chart-box"><canvas id="pricingChart"></canvas></div>
+                    </div>
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-scale-balanced"></i> Static Pricing vs. AI Dynamic Pricing (₹)</h3>
+                        <div class="chart-box-sm"><canvas id="profitCompareChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2ND HALF: STRUCTURED KNOWLEDGE CARDS -->
+            <div class="knowledge-grid stagger-3">
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-gears"></i> How Is It Used</h4>
+                    <p>Blends 65% internal scarcity/demand pricing with 35% live competitor anchoring, bounded by strict cost-plus floor guardrails and a log-linear price elasticity curve (<code>e = -1.4</code>).</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-hand-pointer"></i> How To Use</h4>
+                    <p>Select any product, simulate demand spikes or competitor price drops, and toggle traffic time slots to inspect optimal price points and projected daily profit lift.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Pro Tips</h4>
+                    <p>High-inventory items (<code>Stock ≥ 35</code>) automatically trigger a <strong>-6% clearance multiplier</strong> to accelerate working-capital turnover without manual markdowns.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-trophy"></i> Advantages</h4>
+                    <p>Guarantees a minimum <strong>12% profit margin above Cost Price</strong> while preventing predatory price gouging via an automated +14% upper ceiling cap.</p>
+                </div>
+                <div class="k-card ps-card">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Solution for the Problem Statement (PS)</h4>
+                    <p>Replaces rigid, slow manual repricing spreadsheets with autonomous, elasticity-aware price optimization that protects margins during demand swings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- MODULE 4: OMNI-QUERY CONVERSATIONAL AI SHOPPING ASSISTANT         -->
+        <!-- ================================================================= -->
+        <section id="mod-chatbot" class="module-view">
+            <div class="module-banner">
+                <div>
+                    <span class="mod-tag">PILLAR 04 • OMNI-QUERY NLP & ENTITY RAG</span>
+                    <h2>SmartCart AI Shopping & Support Copilot</h2>
+                </div>
+                <div class="algo-chip">TF-IDF Semantic Retrieval + Regex Budget/Brand/Comparison Parser</div>
+            </div>
+
+            <!-- 1ST HALF: FULL-SCREEN INTERACTIVE CHATBOT -->
+            <div class="chat-module-layout stagger-1">
+                <div class="glass-card chat-main-card">
+                    <div class="chat-top-bar">
+                        <div class="bot-identity">
+                            <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                            <div>
+                                <h4>SmartCart AI Copilot <span class="online-tag">Online</span></h4>
+                                <small>Ask about products, budgets, comparisons, stock, EMI, shipping, returns, or ML metrics</small>
+                            </div>
+                        </div>
+                        <button id="clearChatBtn" class="btn-outline-sm"><i class="fa-solid fa-rotate-right"></i> Reset Chat</button>
+                    </div>
+
+                    <div id="chatWindow" class="chat-messages-area">
+                        <div class="chat-msg bot">
+                            Hello! I am <strong>SmartCart AI Copilot</strong>. I can answer <strong>any query</strong> across our 36-product catalog, head-to-head comparisons, budgets, shipping/return policies, active coupons, or live ML accuracy metrics. Try a prompt chip below or type anything!
+                        </div>
+                    </div>
+
+                    <div class="prompt-chips-bar">
+                        <button class="chip-btn" data-q="Best ANC headphones under 28k">🎧 ANC headphones under 28k</button>
+                        <button class="chip-btn" data-q="Compare Sony WH-1000XM5 vs Bose QuietComfort">⚖️ Sony vs Bose</button>
+                        <button class="chip-btn" data-q="Coding laptops under 1.3 lakh">💻 Coding laptops under 1.3L</button>
+                        <button class="chip-btn" data-q="Show low stock items">⚠️ Low stock items</button>
+                        <button class="chip-btn" data-q="What are your active coupon codes and EMI options?">🎟️ Coupons & EMI</button>
+                        <button class="chip-btn" data-q="Show live AI model accuracy and algorithms">🧠 Live ML Metrics</button>
+                    </div>
+
+                    <form id="chatForm" class="chat-input-bar">
+                        <input type="text" id="chatInput" placeholder="Ask anything: e.g. 'Compare iPhone 16 Pro vs Galaxy S24 Ultra' or 'Smart home under 30000'..." required>
+                        <button type="submit" class="btn-glow-primary"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 2ND HALF: STRUCTURED KNOWLEDGE CARDS -->
+            <div class="knowledge-grid stagger-2">
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-gears"></i> How Is It Used</h4>
+                    <p>Combines multi-intent NLP classification, regex currency parsing (<code>k</code>, <code>lakh</code>, INR digits), entity comparison matching, and TF-IDF cosine ranking over the live catalog.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-hand-pointer"></i> How To Use</h4>
+                    <p>Type any natural-language question here—or click the floating <strong>Robot Favicon</strong> in the bottom-right corner from any screen—to query products, policies, or AI stats.</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Pro Tips</h4>
+                    <p>Add new custom products in <strong>Module 5 (Admin Studio)</strong> and immediately ask the chatbot about them—the TF-IDF index updates in real time!</p>
+                </div>
+                <div class="k-card">
+                    <h4><i class="fa-solid fa-trophy"></i> Advantages</h4>
+                    <p>Zero hallucinated prices or out-of-stock links because every product card is grounded directly in the live CSV/Pandas catalog state.</p>
+                </div>
+                <div class="k-card ps-card">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Solution for the Problem Statement (PS)</h4>
+                    <p>Eliminates filter fatigue and slow customer support queues by resolving discovery, comparisons, and policy questions in sub-second conversational turns.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- MODULE 5: SEPARATE ADMIN CUSTOM PRODUCT STUDIO                    -->
+        <!-- ================================================================= -->
+        <section id="mod-admin" class="module-view">
+            <div class="module-banner admin-banner">
+                <div>
+                    <span class="mod-tag">PILLAR 05 • LIVE CATALOG & ML RETRAINING CONSOLE</span>
+                    <h2>Admin Custom Product Studio</h2>
+                </div>
+                <div class="algo-chip">Live CSV Persistence + Instant TF-IDF Vectorizer Re-Indexing</div>
+            </div>
+
+            <!-- ADMIN LIVE KPI STRIP -->
+            <div class="kpi-strip stagger-1">
+                <div class="kpi-tile"><span>Total Catalog SKUs</span><strong id="adminTotalSkus">{{ stats.total_products }}</strong></div>
+                <div class="kpi-tile"><span>Warehouse Units</span><strong id="adminTotalStock">{{ "{:,}".format(stats.total_stock) }}</strong></div>
+                <div class="kpi-tile"><span>Inventory Value</span><strong id="adminCatalogVal">₹{{ "{:,}".format(stats.catalog_value) }}</strong></div>
+                <div class="kpi-tile"><span>Avg Gross Margin</span><strong id="adminAvgMargin">{{ stats.avg_margin }}%</strong></div>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- CREATE CUSTOM PRODUCT FORM -->
+                <div class="glass-card stagger-2">
+                    <h3><i class="fa-solid fa-square-plus"></i> Create & Publish Custom Product</h3>
+                    <p class="sub-note">Adding a product writes directly to <code>data/products.csv</code> and immediately retrains the AI Recommender, Dynamic Pricing & Chatbot.</p>
+
+                    <form id="adminAddForm">
+                        <div class="form-group">
+                            <label for="admName">Product Name *</label>
+                            <input type="text" id="admName" placeholder="e.g., Apple iPad Pro M4 13-inch OLED" required>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="admCategory">Category *</label>
+                                <select id="admCategory">
+                                    <option value="Audio">Audio</option>
+                                    <option value="Laptops">Laptops</option>
+                                    <option value="Smartphones">Smartphones</option>
+                                    <option value="Accessories" selected>Accessories</option>
+                                    <option value="Wearables">Wearables</option>
+                                    <option value="Smart Home">Smart Home</option>
+                                    <option value="Gaming & Cameras">Gaming & Cameras</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="admBrand">Brand *</label>
+                                <input type="text" id="admBrand" placeholder="e.g., Apple" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="admBasePrice">Selling Base Price (₹) *</label>
+                                <input type="number" id="admBasePrice" value="49990" min="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admCostPrice">Wholesale Cost Price (₹) *</label>
+                                <input type="number" id="admCostPrice" value="35000" min="50" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="admStock">Initial Stock Units *</label>
+                                <input type="number" id="admStock" value="22" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admRating">Initial Rating (1.0 – 5.0)</label>
+                                <input type="number" id="admRating" value="4.8" min="1.0" max="5.0" step="0.1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="admWarranty">Warranty Coverage</label>
+                            <input type="text" id="admWarranty" value="1 Year Manufacturer Warranty">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="slider-top">
+                                <label for="admTags">AI Semantic Search Tags *</label>
+                                <button type="button" id="autoTagsBtn" class="btn-outline-xs"><i class="fa-solid fa-wand-sparkles"></i> Auto-Generate Tags</button>
+                            </div>
+                            <input type="text" id="admTags" placeholder="tablet oled m4 stylus creator portable productivity" required>
+                        </div>
+
+                        <button type="submit" class="btn-glow-primary full-w">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Save Product & Retrain AI Engine
+                        </button>
+                        <div id="adminToast" class="admin-toast"></div>
+                    </form>
+                </div>
+
+                <!-- LIVE INVENTORY CHART & MANAGE CATALOG TABLE -->
+                <div class="charts-stack stagger-3">
+                    <div class="glass-card">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Live Catalog Distribution by Category</h3>
+                        <div class="chart-box-sm"><canvas id="adminCategoryChart"></canvas></div>
+                    </div>
+
+                    <div class="glass-card">
+                        <div class="slider-top">
+                            <h3><i class="fa-solid fa-boxes-stacked"></i> Live Product Database</h3>
+                            <input type="text" id="adminSearchInput" class="search-mini" placeholder="Filter SKUs...">
+                        </div>
+                        <div class="table-wrap max-h-320">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- FLOATING CORNER CHATBOT FAVICON & DRAWER (ACCESSIBLE EVERYWHERE)      -->
+    <!-- ===================================================================== -->
+    <button id="cornerBotBtn" class="corner-bot-fab" title="Open SmartCart AI Copilot">
+        <i class="fa-solid fa-robot"></i>
+        <span class="fab-badge">AI</span>
+    </button>
+
+    <div id="cornerBotDrawer" class="corner-bot-drawer">
+        <div class="drawer-header">
+            <div>
+                <strong><i class="fa-solid fa-robot"></i> SmartCart AI Copilot</strong>
+                <span>Live Catalog & Policy Assistant</span>
+            </div>
+            <button id="closeDrawerBtn" class="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="drawerChatWindow" class="drawer-messages">
+            <div class="chat-msg bot">
+                Hi! Need a quick product recommendation, price comparison, or coupon code? Ask me anything!
+            </div>
+        </div>
+        <form id="drawerChatForm" class="drawer-input-row">
+            <input type="text" id="drawerChatInput" placeholder="Ask anything..." required>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

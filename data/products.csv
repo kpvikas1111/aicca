@@ -1,0 +1,37 @@
+﻿Product_ID,Product_Name,Category,Brand,Base_Price,Cost_Price,Stock,Rating,Reviews_Count,Tags,Warranty
+101,Sony WH-1000XM5 ANC Headphones,Audio,Sony,29990,19500,18,4.9,2840,wireless noise cancelling over ear headphones audio music sony bluetooth studio ldac travel,1 Year Sony India
+102,Apple AirPods Pro (2nd Gen USB-C),Audio,Apple,24900,16200,32,4.8,4120,wireless noise cancelling earbuds apple ios spatial audio bluetooth compact transparency,1 Year Apple Care
+103,Bose QuietComfort Ultra Earbuds,Audio,Bose,25900,17000,12,4.7,1590,wireless noise cancelling earbuds bose immersive audio music bluetooth comfort travel,1 Year Bose Warranty
+104,JBL Flip 6 Waterproof Bluetooth Speaker,Audio,JBL,11999,7400,45,4.6,3210,portable waterproof bluetooth speaker bass music outdoor party jbl rugged,1 Year Harman India
+105,Sennheiser Momentum 4 Wireless,Audio,Sennheiser,27990,18100,15,4.8,1180,wireless audiophile over ear headphones battery 60h bluetooth music sennheiser studio,2 Years Sennheiser
+106,Apple MacBook Air M3 (16GB/512GB),Laptops,Apple,134900,98000,9,4.9,1950,laptop apple macbook ultrabook lightweight coding video editing productivity m3 macos,1 Year Apple Care
+107,Dell XPS 13 OLED Evo Ultrabook,Laptops,Dell,119990,87000,14,4.7,1420,laptop windows dell ultrabook oled lightweight coding business productivity intel,1 Year Dell Onsite
+108,ASUS ROG Zephyrus G14 RTX 4060,Laptops,ASUS,149990,112000,7,4.8,980,laptop gaming rtx gpu high performance coding 3d rendering editing asus rog,1 Year ASUS Global
+109,Lenovo ThinkPad X1 Carbon Gen 11,Laptops,Lenovo,139990,101000,11,4.8,860,laptop business enterprise ultrabook coding durability keyboard lenovo thinkpad,3 Years Lenovo Premier
+110,HP Spectre x360 14 2-in-1 OLED,Laptops,HP,128990,94000,13,4.7,1120,laptop convertible touchscreen stylus oled windows productivity creator hp spectre,1 Year HP Onsite
+111,Apple iPhone 16 Pro (256GB Titanium),Smartphones,Apple,129900,96000,10,4.9,3420,smartphone iphone apple 5g camera pro titanium ios flagship video creator,1 Year Apple Care
+112,Samsung Galaxy S24 Ultra 5G (512GB),Smartphones,Samsung,124999,91000,14,4.8,2980,smartphone samsung galaxy android s-pen 200mp camera ai flagship 5g,1 Year Samsung India
+113,OnePlus 12 5G (16GB/512GB),Smartphones,OnePlus,69999,51000,26,4.7,4150,smartphone oneplus android hasselblad camera fast charging snapdragon 5g,1 Year OnePlus India
+114,Google Pixel 9 Pro (256GB),Smartphones,Google,109999,81000,12,4.8,1340,smartphone google pixel android ai camera photography pure android 5g,1 Year Google India
+115,Nothing Phone (2a) Plus 5G,Smartphones,Nothing,27999,19800,38,4.5,2610,smartphone nothing glyph budget 5g android clean ui lightweight,1 Year Nothing India
+116,Logitech MX Master 3S Wireless Mouse,Accessories,Logitech,9995,6100,40,4.9,5430,wireless ergonomic mouse productivity office usb-c logitech silent magspeed wfh,1 Year Logitech
+117,Keychron K2 Pro QMK Mechanical Keyboard,Accessories,Keychron,8999,5400,22,4.8,2190,mechanical wireless keyboard tactile typing coding rgb bluetooth custom hot-swap wfh,1 Year Keychron
+118,Anker 737 GaNPrime Power Bank (140W),Accessories,Anker,14999,9200,28,4.8,3110,fast charging power bank portable battery laptop phone usb-c travel display,18 Months Anker
+119,Belkin BoostCharge Pro 3-in-1 Dock,Accessories,Belkin,12999,7900,19,4.5,1040,wireless magsafe charger stand apple iphone watch airpods desk dock,2 Years Belkin
+120,Samsung T7 Shield 2TB Portable SSD,Accessories,Samsung,16499,10800,34,4.8,3890,external ssd storage backup rugged fast usb-c video editing creator samsung,3 Years Samsung
+121,CalDigit TS4 Thunderbolt 4 Dock,Accessories,CalDigit,34990,24500,8,4.9,740,thunderbolt dock hub workstation dual monitor macbook laptop ports wfh,2 Years CalDigit
+122,Samsung Galaxy Watch 6 Classic LTE,Wearables,Samsung,36999,24500,25,4.6,2310,smartwatch fitness tracker health ecg heart rate rotating bezel samsung android,1 Year Samsung India
+123,Garmin Forerunner 265 AMOLED Watch,Wearables,Garmin,44990,30500,11,4.9,1670,smartwatch running gps fitness tracker triathlon marathon sports battery garmin,2 Years Garmin India
+124,Apple Watch Series 9 GPS (45mm),Wearables,Apple,41900,28000,16,4.8,3890,smartwatch fitness health heart rate ios siri display apple watch,1 Year Apple Care
+125,Whoop 4.0 Health & Recovery Band,Wearables,Whoop,23990,15500,21,4.6,1490,fitness tracker sleep recovery strain athlete health band wearable subscription,1 Year Whoop
+126,Dyson V12 Detect Slim Cordless Vacuum,Smart Home,Dyson,52900,36500,13,4.8,1820,smart home cordless vacuum laser dust cleaner dyson appliance lightweight,2 Years Dyson India
+127,Philips Hue Play Gradient Lightstrip Kit,Smart Home,Philips,21999,14200,24,4.7,1290,smart home rgb ambient lighting sync tv gaming desk setup philips hue,2 Years Philips
+128,Amazon Echo Show 10 (3rd Gen),Smart Home,Amazon,24999,16400,29,4.6,2740,smart home display alexa speaker video call automation hub amazon,1 Year Amazon
+129,Roborock S8 Pro Ultra Robot Vacuum,Smart Home,Roborock,114990,82000,6,4.9,910,smart home robot vacuum mop self cleaning lidar automation roborock,1 Year Roborock
+130,Dyson Purifier Cool Formaldehyde TP09,Smart Home,Dyson,62900,43500,10,4.8,1150,smart home air purifier hepa filter sensor cooling dyson health,2 Years Dyson India
+131,Sony PlayStation 5 Slim Console (1TB),Gaming & Cameras,Sony,54990,41500,15,4.9,6420,gaming console ps5 4k hdr dualsense sony entertainment living room,1 Year Sony India
+132,Sony Alpha ZV-E10 Mirrorless Vlog Camera,Gaming & Cameras,Sony,61490,44000,12,4.8,2180,camera mirrorless 4k vlogging content creator youtube autofocus lens sony,2 Years Sony India
+133,GoPro HERO12 Black Action Camera,Gaming & Cameras,GoPro,37990,26000,27,4.7,2940,action camera waterproof 5.3k sports travel vlog stabilization gopro,1 Year GoPro
+134,DJI Mini 4 Pro Fly More Drone Combo,Gaming & Cameras,DJI,104990,76000,8,4.9,1120,drone 4k camera aerial photography obstacle avoidance travel dji,1 Year DJI Care
+135,Razer BlackShark V2 Pro Wireless Headset,Gaming & Cameras,Razer,17999,11500,23,4.7,1890,gaming wireless headset esports microphone low latency pc ps5 razer,2 Years Razer
+136,LG UltraGear 27-inch QHD 240Hz OLED Monitor,Gaming & Cameras,LG,78990,56500,9,4.9,1050,gaming monitor oled 240hz qhd hdr pc coding workstation lg,3 Years LG India
