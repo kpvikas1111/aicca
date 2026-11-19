@@ -1,0 +1,6 @@
+﻿IEQ_Paper/
+__pycache__/
+*.pyc
+venv/
+.venv/
+.vercel
